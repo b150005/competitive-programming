@@ -1,0 +1,15 @@
+{
+  "name": "competitive-programming",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@biomejs/biome": "latest",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "latest"
+  },
+  "trustedDependencies": [
+    "@biomejs/biome"
+  ]
+}
