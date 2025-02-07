@@ -1,8 +1,22 @@
-# competitive-programming
+# Competitive Programming for TypeScript(Node.js)
 
-## 環境構築
+## 🕹️ コマンド集
+
+| コマンド | 用途 | 実行例 |
+| --- | --- | --- |
+| `bun run new` | 問題とサンプルの取得 | `bun run new abc101` |
+| `bun run test` | コードのテスト | `bun run test -c "bun abc101/a/abc101-a.ts" -d abc101/a/tests` |
+| `bun run lint-and-format` | コードの提出 | `bun run submit abc101/a/abc101-a.ts -t abc101_a -c abc101 -- -l 5058` |
+
+## ✍️ 問題を解く
+
+
+
+## ⚙️ 環境構築
 
 ### Bun プロジェクトの作成
+
+- [Bun](https://bun.sh/)
 
 ```sh
 bun init -y
@@ -19,6 +33,8 @@ To get started, run:
 
 ### TypeScript のインストール
 
+- [TypeScript](https://www.typescriptlang.org/ja/)
+
 ```sh
 bun add -d typescript
 
@@ -32,6 +48,8 @@ installed typescript@5.7.3 with binaries:
 ```
 
 #### tsconfig.json の設定
+
+- [TSConfig リファレンス](https://www.typescriptlang.org/ja/tsconfig/)
 
 > [!TIP]
 > 基本的に Linter, Formatter は Biome を使用します。
@@ -65,6 +83,8 @@ installed typescript@5.7.3 with binaries:
 ```
 
 ### Biome のインストール
+
+- [Biome](https://biomejs.dev/ja/)
 
 ```sh
 bun add -d @biomejs/biome
@@ -124,6 +144,8 @@ Next Steps
 
 #### Biome のフォーマット設定
 
+- [Configure Biome](https://biomejs.dev/guides/configure-biome/)
+
 ```json:biome.json
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
@@ -158,7 +180,9 @@ Next Steps
 }
 ```
 
-### AtCoder CLI のインストール
+### atcoder-cli のインストール
+
+- [atcoder-cli](https://github.com/Tatamo/atcoder-cli)
 
 ```sh
 bun add -g atcoder-cli
@@ -175,7 +199,94 @@ warn: To run "acc", add the global bin folder to $PATH:
 export PATH="/Users/b150005/.bun/bin:$PATH"
 ```
 
+```sh
+echo 'export PATH="/Users/b150005/.bun/bin:$PATH"' >> ~/.zshrc
+```
+
+```sh
+source ~/.zshrc
+
+export plugin already enabled
+```
+
+```sh
+acc login
+
+(node:56032) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+? username: b150005
+? password: [hidden]
+OK
+```
+
+```sh
+acc config default-task-choice all
+
+default-task-choice = all
+```
+
+#### テンプレートの作成
+
+```sh
+cd `acc config-dir`
+```
+
+```sh
+mkdir ts && cd $_
+```
+
+```sh
+touch main.ts && touch template.json
+```
+
+```sh
+open .
+```
+
+```json:template.json
+{
+  "task": {
+    "program": [["main.ts", "{ContestID}-{tasklabel}.ts"]],
+    "submit": "{ContestID}/{tasklabel}/{ContestID}-{tasklabel}.ts",
+    "cmd": "jq -r --arg tid \"$TASK_ID\" '{ contest_title: .contest.title, contest_url: .contest.url, task: .tasks[] | select(.id == $tid) } | \"CONTEST_TITLE=\\\"\\(.contest_title)\\\" CONTEST_URL=\\\"\\(.contest_url)\\\" TASK_LABEL=\\\"\\(.task.label)\\\" TASK_TITLE=\\\"\\(.task.title)\\\" TASK_URL=\\\"\\(.task.url)\\\"\"' ../contest.acc.json > /tmp/vars && . /tmp/vars && export TASK_LABEL_LOWER=$(echo $TASK_LABEL | tr '[:upper:]' '[:lower:]') && sed -i \"\" \"s|\\${CONTEST_ID}|$CONTEST_ID|g; s|\\${CONTEST_TITLE}|$CONTEST_TITLE|g; s|\\${CONTEST_URL}|$CONTEST_URL|g; s|\\${TASK_ID}|$TASK_ID|g; s|\\${TASK_LABEL}|$TASK_LABEL|g; s|\\${TASK_TITLE}|$TASK_TITLE|g; s|\\${TASK_URL}|$TASK_URL|g; s|\\${SUBMIT}|$CONTEST_ID/$TASK_LABEL_LOWER/$CONTEST_ID-$TASK_LABEL_LOWER.ts|g; s|\\${TEST_DIR}|$TASK_LABEL_LOWER/tests|g\" \"$CONTEST_ID-$TASK_LABEL.ts\""
+  }
+}
+```
+
+```ts:main.ts
+/*
+CONTEST
+  ID: ${CONTEST_ID}
+  TITLE: ${CONTEST_TITLE}
+  URL: ${CONTEST_URL}
+
+TASK
+  ID: ${TASK_ID}
+  LABEL: ${TASK_LABEL}
+  TITLE: ${TASK_TITLE}
+  URL: ${TASK_URL}
+
+To test , run the following command:
+  bun run test -c "bun ${SUBMIT}" -d ${CONTEST_ID}/${TEST_DIR}
+
+To submit, run the following command:
+  bun run submit ${SUBMIT} -t ${TASK_ID} -c ${CONTEST_ID} -- -l 5058
+*/
+
+import { readFileSync } from "node:fs";
+
+const inputs = readFileSync("/dev/stdin", "utf-8");
+```
+
+```sh
+acc config default-template ts
+
+default-template = ts
+```
+
 ### online-judge-tools のインストール
+
+- [online-judge-tools](https://github.com/online-judge-tools/oj)
 
 ```sh
 pipx install online-judge-tools
@@ -210,4 +321,70 @@ pipx inject online-judge-tools setuptools
 
   injected package setuptools into venv online-judge-tools
 done! ✨ 🌟 ✨
+```
+
+```sh
+acc check-oj
+
+online-judge-tools is available. found at:
+/Users/b150005/.local/bin/oj
+```
+
+```sh
+oj login https://atcoder.jp/
+
+[INFO] GET: https://pypi.org/pypi/online-judge-tools/json
+[INFO] 200 OK
+[INFO] GET: https://pypi.org/pypi/online-judge-api-client/json
+[INFO] 200 OK
+[INFO] online-judge-tools 11.5.1 (+ online-judge-api-client 10.10.1)
+[INFO] load cookie from: /Users/b150005/Library/Application Support/online-judge-tools/cookie.jar
+[NETWORK] GET: https://atcoder.jp/contests/agc001/submit
+[NETWORK] 302 Found
+[FAILURE] You are not signed in.
+[ERROR] Selenium is not installed. Please run $ pip3 install selenium
+[WARNING] Switch to use CUI-based login instead of Selenium
+[NETWORK] GET: https://atcoder.jp/contests/agc001/submit
+[NETWORK] 302 Found
+[NETWORK] GET: https://atcoder.jp/login
+[NETWORK] 200 OK
+[WARNING] AtCoder says: × Please sign in first.
+Username: b150005
+Password: 
+[NETWORK] POST: https://atcoder.jp/login
+[NETWORK] redirected to: https://atcoder.jp/home
+[NETWORK] 200 OK
+[WARNING] AtCoder says: × Welcome, b150005.
+[INFO] Welcome,
+[NETWORK] GET: https://atcoder.jp/contests/agc001/submit
+[NETWORK] 200 OK
+[SUCCESS] You have already signed in.
+[INFO] save cookie to: /Users/b150005/Library/Application Support/online-judge-tools/cookie.jar
+```
+
+### コマンドの追加
+
+```json:package.json
+{
+  "name": "competitive-programming",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "lint": "biome lint --write --diagnostic-level=error",
+    "format": "biome check --write --linter-enabled=false",
+    "lint-and-format": "biome check --write --diagnostic-level=error",
+    "lint-and-format:ci": "biome ci --verbose --diagnostic-level=error",
+    "new": "acc new",
+    "test": "oj test",
+    "submit": "acc submit"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "latest",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "latest"
+  },
+  "trustedDependencies": ["@biomejs/biome"]
+}
 ```
