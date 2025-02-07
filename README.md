@@ -8,10 +8,6 @@
 | `bun run test` | コードのテスト | `bun run test -c "bun abc101/a/abc101-a.ts" -d abc101/a/tests` |
 | `bun run lint-and-format` | コードの提出 | `bun run submit abc101/a/abc101-a.ts -t abc101_a -c abc101 -- -l 5058` |
 
-## ✍️ 問題を解く
-
-
-
 ## ⚙️ 環境構築
 
 ### Bun プロジェクトの作成
