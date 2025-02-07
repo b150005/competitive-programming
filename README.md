@@ -1,4 +1,4 @@
-# Competitive Programming for TypeScript(Node.js)
+# Competitive Programming with TypeScript(Node.js)
 
 ## 🕹️ コマンド集
 
