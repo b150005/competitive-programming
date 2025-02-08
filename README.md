@@ -271,7 +271,7 @@ To submit, run the following command:
 
 import { readFileSync } from "node:fs";
 
-const inputs = readFileSync("/dev/stdin", "utf-8");
+const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
 ```
 
 ```sh
