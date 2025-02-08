@@ -20,3 +20,22 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const [n, a, b] = inputs.split(" ").map((str) => Number.parseInt(str));
+
+function sumOfDigits(num: number): number {
+  let sum = 0;
+  let currentIndex = 0;
+  while (currentIndex < num.toString().length) {
+    sum += Number.parseInt(num.toString()[currentIndex]);
+    currentIndex += 1;
+  }
+  return sum;
+}
+
+let sum = 0;
+for (let i = 0; i <= n; i++) {
+  const _sumOfDigits = sumOfDigits(i);
+  sum += _sumOfDigits >= a && _sumOfDigits <= b ? i : 0;
+}
+
+console.log(sum.toString());
