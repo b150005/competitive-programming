@@ -20,3 +20,16 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+
+function check(s: string, pattern: RegExp): boolean {
+  if (pattern.test(s)) {
+    return true;
+  }
+  return false;
+}
+
+if (check(inputs, /^(dream(er)?|erase(r)?)+$/)) {
+  console.log("YES");
+} else {
+  console.log("NO");
+}
