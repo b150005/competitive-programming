@@ -20,3 +20,9 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+
+function count(s: string, pattern: RegExp): number {
+  return Array.from(s.matchAll(RegExp(pattern, "g"))).length;
+}
+
+console.log(count(inputs, /1/).toString());
