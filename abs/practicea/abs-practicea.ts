@@ -10,7 +10,7 @@ TASK
   TITLE: Welcome to AtCoder
   URL: https://atcoder.jp/contests/abs/tasks/practice_1
 
-To test , run the following command:
+To test, run the following command:
   bun run test -c "bun abs/practicea/abs-practicea.ts" -d abs/practicea/tests
 
 To submit, run the following command:

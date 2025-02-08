@@ -262,7 +262,7 @@ TASK
   TITLE: ${TASK_TITLE}
   URL: ${TASK_URL}
 
-To test , run the following command:
+To test, run the following command:
   bun run test -c "bun ${SUBMIT}" -d ${CONTEST_ID}/${TEST_DIR}
 
 To submit, run the following command:

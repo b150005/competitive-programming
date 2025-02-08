@@ -10,7 +10,7 @@ TASK
   TITLE: Some Sums
   URL: https://atcoder.jp/contests/abs/tasks/abc083_b
 
-To test , run the following command:
+To test, run the following command:
   bun run test -c "bun abs/abc083b/abs-abc083b.ts" -d abs/abc083b/tests
 
 To submit, run the following command:

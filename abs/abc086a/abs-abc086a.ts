@@ -10,7 +10,7 @@ TASK
   TITLE: Product
   URL: https://atcoder.jp/contests/abs/tasks/abc086_a
 
-To test , run the following command:
+To test, run the following command:
   bun run test -c "bun abs/abc086a/abs-abc086a.ts" -d abs/abc086a/tests
 
 To submit, run the following command:

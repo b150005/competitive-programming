@@ -10,7 +10,7 @@ TASK
   TITLE: Card Game for Two
   URL: https://atcoder.jp/contests/abs/tasks/abc088_b
 
-To test , run the following command:
+To test, run the following command:
   bun run test -c "bun abs/abc088b/abs-abc088b.ts" -d abs/abc088b/tests
 
 To submit, run the following command:

@@ -10,7 +10,7 @@ TASK
   TITLE: Shift only
   URL: https://atcoder.jp/contests/abs/tasks/abc081_b
 
-To test , run the following command:
+To test, run the following command:
   bun run test -c "bun abs/abc081b/abs-abc081b.ts" -d abs/abc081b/tests
 
 To submit, run the following command:

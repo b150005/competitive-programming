@@ -10,7 +10,7 @@ TASK
   TITLE: Traveling
   URL: https://atcoder.jp/contests/abs/tasks/arc089_a
 
-To test , run the following command:
+To test, run the following command:
   bun run test -c "bun abs/abc086c/abs-abc086c.ts" -d abs/abc086c/tests
 
 To submit, run the following command:

@@ -10,7 +10,7 @@ TASK
   TITLE: Kagami Mochi
   URL: https://atcoder.jp/contests/abs/tasks/abc085_b
 
-To test , run the following command:
+To test, run the following command:
   bun run test -c "bun abs/abc085b/abs-abc085b.ts" -d abs/abc085b/tests
 
 To submit, run the following command:

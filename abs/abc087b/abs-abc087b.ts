@@ -10,7 +10,7 @@ TASK
   TITLE: Coins
   URL: https://atcoder.jp/contests/abs/tasks/abc087_b
 
-To test , run the following command:
+To test, run the following command:
   bun run test -c "bun abs/abc087b/abs-abc087b.ts" -d abs/abc087b/tests
 
 To submit, run the following command:

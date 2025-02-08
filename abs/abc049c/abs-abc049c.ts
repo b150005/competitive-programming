@@ -10,7 +10,7 @@ TASK
   TITLE: Daydream
   URL: https://atcoder.jp/contests/abs/tasks/arc065_a
 
-To test , run the following command:
+To test, run the following command:
   bun run test -c "bun abs/abc049c/abs-abc049c.ts" -d abs/abc049c/tests
 
 To submit, run the following command:

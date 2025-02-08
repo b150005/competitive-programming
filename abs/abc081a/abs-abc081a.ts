@@ -10,7 +10,7 @@ TASK
   TITLE: Placing Marbles
   URL: https://atcoder.jp/contests/abs/tasks/abc081_a
 
-To test , run the following command:
+To test, run the following command:
   bun run test -c "bun abs/abc081a/abs-abc081a.ts" -d abs/abc081a/tests
 
 To submit, run the following command:
