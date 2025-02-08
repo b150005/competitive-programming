@@ -20,3 +20,23 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const ds = [
+  ...new Set(
+    inputs
+      .split("\n")
+      .slice(1)
+      .map((str) => Number.parseInt(str)),
+  ),
+].sort((a, b) => a - b);
+
+function count(nums: number[]): number {
+  let last = 0;
+  let currentIndex = 0;
+  while (currentIndex < nums.length && nums[currentIndex] > last) {
+    last = nums[currentIndex];
+    currentIndex += 1;
+  }
+  return currentIndex;
+}
+
+console.log(count(ds).toString());
