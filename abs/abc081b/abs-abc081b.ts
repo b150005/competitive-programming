@@ -20,3 +20,30 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const aList = inputs
+  .split("\n")[1]
+  .split(" ")
+  .map((str) => Number.parseInt(str));
+
+function count(nums: number[]): number {
+  let _nums = nums;
+  let _count = 0;
+
+  while (!containsOdd(_nums)) {
+    _nums = _nums.map((num) => num / 2);
+    _count += 1;
+  }
+
+  return _count;
+}
+
+function containsOdd(nums: number[]): boolean {
+  for (const num of nums) {
+    if (num % 2 === 1) {
+      return true;
+    }
+  }
+  return false;
+}
+
+console.log(count(aList).toString());
