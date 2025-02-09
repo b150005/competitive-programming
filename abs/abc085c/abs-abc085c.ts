@@ -21,3 +21,20 @@ import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
 const [n, y] = inputs.split(" ").map((str) => Number.parseInt(str));
+
+function findBills(n: number, total: number): number[] {
+  for (let x = 0; x <= Math.floor((total / 1000 - n) / 9); x++) {
+    if ((total / 1000 - n - 9 * x) % 4 === 0) {
+      const y = (total / 1000 - n - 9 * x) / 4;
+      const z = n - (x + y);
+      if (z < 0) {
+        continue;
+      }
+      return [x, y, z];
+    }
+  }
+  return [-1, -1, -1];
+}
+
+const answer = findBills(n, y);
+console.log(answer.map((num) => num.toString()).join(" "));
