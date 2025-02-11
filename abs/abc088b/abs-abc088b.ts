@@ -20,3 +20,14 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const as = inputs
+  .split("\n")[1]
+  .split(" ")
+  .map((str) => Number.parseInt(str))
+  .sort((a, b) => b - a);
+
+function countPoint(nums: number[]): number {
+  return nums.reduce((accumulator, num, index, nums) => (index % 2 === 0 ? accumulator + num : accumulator - num), 0);
+}
+
+console.log(countPoint(as).toString());
