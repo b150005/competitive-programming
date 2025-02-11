@@ -19,4 +19,16 @@ To submit, run the following command:
 
 import { readFileSync } from "node:fs";
 
-const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd().split("\n");
+const [a, b, c, s] = inputs.flatMap((str, index, inputs) => {
+  switch (index) {
+    case 0:
+      return Number.parseInt(str);
+    case 1:
+      return str.split(" ").map((str) => Number.parseInt(str));
+    case 2:
+      return str;
+  }
+});
+
+console.log(`${((a as number) + (b as number) + (c as number)).toString()} ${s}`);
