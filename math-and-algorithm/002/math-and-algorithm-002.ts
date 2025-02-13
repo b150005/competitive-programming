@@ -20,3 +20,5 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const [a1, a2, a3] = inputs.split(" ").map((str) => Number.parseInt(str));
+console.log((a1 + a2 + a3).toString());
