@@ -20,3 +20,12 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const n = Number.parseInt(inputs);
+
+function factorial(num: number): number {
+  return Array.from({ length: num }, (_, index) => index + 1).reduce(
+    (accumulator, currentValue) => accumulator * currentValue,
+  );
+}
+
+console.log(factorial(n).toString());
