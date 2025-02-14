@@ -20,3 +20,20 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const [n, s] = inputs.split(" ").map((str) => Number.parseInt(str));
+
+function countCombinations(n: number, limit: number): number {
+  let count = 0;
+
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (i + j <= limit) {
+        count++;
+      }
+    }
+  }
+
+  return count;
+}
+
+console.log(countCombinations(n, s).toString());
