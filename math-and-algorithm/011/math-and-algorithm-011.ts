@@ -20,3 +20,28 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const n = Number.parseInt(inputs);
+
+function primeNumbers(num: number): number[] {
+  const prime: boolean[] = Array(num + 1).fill(true);
+  prime[0] = false;
+  prime[1] = false;
+
+  // エラトステネスの篩(2 以上 √num 以下の範囲で走査)
+  for (let i = 2; i * i <= num; i++) {
+    if (prime[i]) {
+      // i を除く i の倍数を false にする
+      for (let j = i * 2; j <= num; j += i) {
+        prime[j] = false;
+      }
+    }
+  }
+
+  return prime.map((value, index, _) => (value ? index : -1)).filter((value) => value !== -1);
+}
+
+console.log(
+  primeNumbers(n)
+    .map((num) => num.toString())
+    .join(" "),
+);
