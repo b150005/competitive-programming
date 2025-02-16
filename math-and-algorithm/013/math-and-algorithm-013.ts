@@ -20,3 +20,19 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const n = Number.parseInt(inputs);
+
+function divisors(num: number): number[] {
+  const divisors: number[] = [];
+  for (let i = 1; i * i <= num; i++) {
+    if (num % i === 0) {
+      divisors.push(i, num / i);
+    }
+  }
+
+  return divisors;
+}
+
+for (const divisor of divisors(n)) {
+  console.log(divisor.toString());
+}
