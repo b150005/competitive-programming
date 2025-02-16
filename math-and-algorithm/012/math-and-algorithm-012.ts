@@ -20,3 +20,15 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const n = Number.parseInt(inputs);
+
+function isPrime(num: number): boolean {
+  for (let i = 2; i * i <= num; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(isPrime(n) ? "Yes" : "No");
