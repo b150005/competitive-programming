@@ -20,3 +20,24 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const n = Number.parseInt(inputs);
+
+function primeFactors(num: number): number[] {
+  let _num = num;
+  const _primeFactors: number[] = [];
+  for (let i = 2; i * i <= num; i++) {
+    while (_num % i === 0) {
+      _primeFactors.push(i);
+      _num /= i;
+    }
+  }
+  // _num が 1 でない場合、 _num は必ず素数なので配列に入れる
+  // (証明)
+  // _num が合成数の場合、その素因数には √_num 以下のものが含まれているはずだが、すでにループしてチェックしているため _num は必ず素数である
+  if (_num !== 1) {
+    _primeFactors.push(_num);
+  }
+  return _primeFactors;
+}
+
+console.log(primeFactors(n).join(" "));
