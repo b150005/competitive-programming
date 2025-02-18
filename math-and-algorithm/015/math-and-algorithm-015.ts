@@ -20,3 +20,14 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const [a, b] = inputs.split(" ").map((str) => Number.parseInt(str));
+
+function gcd(num1: number, num2: number): number {
+  if (num2 === 0) {
+    return num1;
+  }
+
+  return gcd(num2, num1 % num2);
+}
+
+console.log(gcd(a, b).toString());
