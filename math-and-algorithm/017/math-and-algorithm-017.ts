@@ -20,3 +20,24 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const as = inputs
+  .split("\n")[1]
+  .split(" ")
+  .map((str) => BigInt(str));
+
+function gcd(num1: bigint, num2: bigint): bigint {
+  if (num2 === 0n) {
+    return num1;
+  }
+  return gcd(num2, num1 % num2);
+}
+
+function lcm(num1: bigint, num2: bigint): bigint {
+  return num1 * (num2 / gcd(num1, num2));
+}
+
+function lcmOf(nums: bigint[]): bigint {
+  return nums.reduce((accumulator, currentValue) => lcm(accumulator, currentValue));
+}
+
+console.log(lcmOf(as).toString());
