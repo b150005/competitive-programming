@@ -20,3 +20,23 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const [n, r] = inputs.split(" ").map((str) => Number.parseInt(str));
+
+function combination(n: number, r: number): number {
+  if (n < r) {
+    return 0;
+  }
+  if (r === 0 || n === r) {
+    return 1;
+  }
+
+  let result = 1;
+  const _r = Math.min(r, n - r);
+  for (let i = 1; i <= _r; i++) {
+    result *= (n - _r + i) / i;
+  }
+
+  return Math.round(result);
+}
+
+console.log(combination(n, r).toString());
