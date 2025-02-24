@@ -20,3 +20,20 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const blues = inputs
+  .split("\n")[1]
+  .split(" ")
+  .map((str) => Number.parseInt(str));
+const reds = inputs
+  .split("\n")[2]
+  .split(" ")
+  .map((str) => Number.parseInt(str));
+
+function expectation(dice1: number[], dice2: number[]): number {
+  const sum1 = dice1.reduce((accumulator, currentValue) => accumulator + currentValue);
+  const sum2 = dice2.reduce((accumulator, currentValue) => accumulator + currentValue);
+
+  return (sum1 + sum2) / dice1.length;
+}
+
+console.log(expectation(blues, reds).toString());
