@@ -20,3 +20,28 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const as = inputs
+  .split("\n")[1]
+  .split(" ")
+  .map((str) => Number.parseInt(str));
+
+function count100K(nums: number[]): number {
+  // 各数の個数を計上する
+  const counts: number[] = Array(100001).fill(0);
+  for (const num of nums) {
+    counts[num]++;
+  }
+
+  // 1 - 49999 は必ず異なる数のカードが選択されるので積の法則を適用
+  let _count = 0;
+  for (let i = 1; i <= 49999; i++) {
+    _count += counts[i] * counts[100000 - i];
+  }
+
+  // 50000 は同じ数のカードの組み合わせ
+  _count += (counts[50000] * (counts[50000] - 1)) / 2;
+
+  return _count;
+}
+
+console.log(count100K(as).toString());
