@@ -20,3 +20,19 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const n = Number.parseInt(inputs);
+
+/**
+ * @remarks
+ *  k 種類目のコインを引く確率は (n - k + 1) / n なので、この期待値はその逆数である n / (n - k + 1)\
+ *  つまり、求める期待値は n * (1 + (1 / 2) + (1 / 3) + ... + (1 / N))
+ */
+function expectation(num: number): number {
+  let probability = 0;
+  for (let i = 1; i <= num; i++) {
+    probability += 1 / i;
+  }
+  return num * probability;
+}
+
+console.log(expectation(n).toString());
