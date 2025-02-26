@@ -20,3 +20,24 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+
+type Section = {
+  optionCount: number;
+  point: number;
+};
+const sections: Section[] = inputs
+  .split("\n")
+  .slice(1)
+  .map((str) => {
+    return { optionCount: Number.parseInt(str.split(" ")[0]), point: Number.parseInt(str.split(" ")[1]) };
+  });
+
+function totalExpectation(sections: Section[]): number {
+  let _total = 0;
+  for (const section of sections) {
+    _total = _total + section.point / section.optionCount;
+  }
+  return _total;
+}
+
+console.log(totalExpectation(sections).toString());
