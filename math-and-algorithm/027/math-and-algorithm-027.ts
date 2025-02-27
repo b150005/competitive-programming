@@ -20,3 +20,47 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const as = inputs
+  .split("\n")[1]
+  .split(" ")
+  .map((str) => Number.parseInt(str));
+
+function mergeSort(nums: number[]): number[] {
+  function merge(left: number[], right: number[]): number[] {
+    const sorted: number[] = [];
+
+    let [leftMergedCount, rightMergedCount] = [0, 0];
+    while (leftMergedCount < left.length || rightMergedCount < right.length) {
+      if (leftMergedCount === left.length) {
+        sorted.push(right[rightMergedCount]);
+        rightMergedCount++;
+        continue;
+      }
+
+      if (rightMergedCount === right.length) {
+        sorted.push(left[leftMergedCount]);
+        leftMergedCount++;
+        continue;
+      }
+
+      if (left[leftMergedCount] <= right[rightMergedCount]) {
+        sorted.push(left[leftMergedCount]);
+        leftMergedCount++;
+      } else {
+        sorted.push(right[rightMergedCount]);
+        rightMergedCount++;
+      }
+    }
+
+    return sorted;
+  }
+
+  if (nums.length <= 1) {
+    return nums;
+  }
+
+  const [left, right] = [nums.slice(0, Math.floor(nums.length / 2)), nums.slice(Math.floor(nums.length / 2))];
+  return merge(mergeSort(left), mergeSort(right));
+}
+
+console.log(mergeSort(as).join(" "));
