@@ -20,3 +20,37 @@ To submit, run the following command:
 import { readFileSync } from "node:fs";
 
 const inputs = readFileSync("/dev/stdin", "utf-8").trimEnd();
+const nums = inputs
+  .split("\n")[1]
+  .split(" ")
+  .map((str) => Number.parseInt(str));
+
+function minCost(nums: number[]): number {
+  const dp = Array(nums.length + 1).fill(-1);
+
+  function cost(position: number): number {
+    if (position === 0 || position === 1) {
+      return 0;
+    }
+
+    const index = position - 1;
+    if (position === 2) {
+      return Math.abs(nums[index] - nums[index - 1]);
+    }
+
+    if (dp[position] !== -1) {
+      return dp[position];
+    }
+
+    dp[position] = Math.min(
+      cost(position - 1) + Math.abs(nums[index] - nums[index - 1]),
+      cost(position - 2) + Math.abs(nums[index] - nums[index - 2]),
+    );
+
+    return dp[position];
+  }
+
+  return cost(nums.length);
+}
+
+console.log(minCost(nums).toString());
